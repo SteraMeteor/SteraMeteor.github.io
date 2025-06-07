@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ | SteraMeteor</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/common/favicon.png" type="image/png">
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <a href="index.html">
+                <img src="images/common/logo.png" alt="グループ名 ロゴ">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">グループ紹介</a></li>
+                <li><a href="members.html">メンバー紹介</a></li>
+                <li><a href="contact.html" class="active">お問い合わせ</a></li> </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-sub">
+            <h1>お問い合わせ</h1>
+            <p>ご質問、ご意見などお気軽にお寄せください</p>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                <h2 class="section-title fade-in-up">お問い合わせフォーム</h2>
+                <p class="section-description fade-in-up">
+                    以下のフォームに必要事項をご記入の上、送信してください。<br>
+                    内容によっては、お返事にお時間をいただく場合や、お返事できない場合がございます。
+                </p>
+                <div class="content-box fade-in-up">
+                    <div id="form-message" class="form-notification" style="display: none;"></div>
+
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">お名前 <span class="required">必須</span></label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">メールアドレス <span class="required">必須</span></label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">件名</label>
+                            <input type="text" id="subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">お問い合わせ内容 <span class="required">必須</span></label>
+                            <textarea id="message" rows="8" required></textarea>
+                        </div>
+
+                        <div class="privacy-agreement">
+                            <input type="checkbox" id="privacyConsent" required>
+                            <label for="privacyConsent">
+                                <a href="privacy.html" target="_blank">プライバシーポリシー</a>に同意する <span class="required">必須</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">送信する</button>
+                    </form>
+
+                    <div class="contact-info">
+                        <h3>その他の連絡先</h3>
+                        <p>フォーム以外でのお問い合わせをご希望の場合は、以下の情報をご参照ください。</p>
+                        <ul>
+                            <li><strong>ビジネスに関するお問い合わせ:</strong>
+                                <a href="mailto:business@example.com">business@example.com</a></li>
+                            <li><strong>ファンレター・プレゼントの送付先:</strong><br>
+                                〒XXX-XXXX 東京都〇〇区△△ 1-2-3<br>
+                                あなたのグループ名 運営事務局宛
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 SteraMeteor All Rights Reserved.</p>
+            <div class="footer-sns">
+                <a href="#" target="_blank" aria-label="X（旧Twitter）"><img src="images/common/icon-x.png" alt="Xアイコン"></a>
+                <a href="#" target="_blank" aria-label="YouTube"><img src="images/common/icon-youtube.png" alt="YouTubeアイコン"></a>
+                <a href="privacy.html" class="privacy-link">プライバシーポリシー</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
