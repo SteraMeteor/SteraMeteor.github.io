@@ -1,0 +1,1147 @@
+/*
+ * style.css - あなたのグループ名 公式サイト用CSS
+ * 最終更新日: 2025年6月7日
+ */
+
+/* 0. CSS変数 (カラーパレットなど) */
+:root {
+    --main-purple: #663399; /* メインカラー (紫) */
+    --dark-purple: #4a287a; /* 濃い紫 (ホバーや強調用) */
+    --light-purple: #e0ccff; /* 薄い紫 (背景やアクセント用) */
+    --text-color: #333333; /* 基本のテキスト色 */
+    --heading-color: #222222; /* 見出しの色 */
+    --white: #ffffff; /* 白 */
+    --light-gray: #cccccc; /* 薄いグレー (区切り線など) */
+    --light-gray-bg: #f8f8f8; /* セクション背景色 */
+    --border-color: #e0e0e0; /* 入力欄のボーダー色 */
+    --input-bg: #ffffff; /* 入力欄の背景色 */
+    --shadow-light: rgba(0, 0, 0, 0.1); /* 薄い影 */
+    --shadow-medium: rgba(0, 0, 0, 0.2); /* 中くらいの影 */
+
+    /* 新しい幾何学模様の変数 */
+    --geometric-pattern-color-1: rgba(255, 255, 255, 0.08); /* パターン1の色 (薄い白) */
+    --geometric-pattern-color-2: rgba(255, 255, 255, 0.05); /* さらに薄い白 */
+
+    /* フォームメッセージの色 */
+    --success-bg: #d4edda; /* 成功時の背景色 */
+    --success-text: #155724; /* 成功時の文字色 */
+    --success-border: #c3e6cb;
+    --error-bg: #f8d7da; /* エラー時の背景色 */
+    --error-text: #721c24; /* エラー時の文字色 */
+    --error-border: #f5c6cb;
+}
+
+/* 1. 全体設定とリセット */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* スムーズスクロールを有効に */
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-gray-bg); /* 全体の背景色 */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- 新しく追加するボックスデザインのクラス --- */
+.content-box {
+    background-color: var(--white); /* 白い背景 */
+    border-radius: 15px; /* 角を丸める */
+    box-shadow: 0 10px 30px var(--shadow-light); /* 影をつける */
+    padding: 40px; /* 内側の余白 */
+    margin-bottom: 60px; /* 下方向のマージン */
+}
+/* コンテナの中央配置と幅制限を content-box に移す場合 */
+.content-box.container {
+    max-width: 900px; /* コンテンツボックスの最大幅 */
+    /* paddingはデフォルトで適用されるので、ここでは上書きしない */
+}
+/* content-box が container クラスと併用される場合、container のパディングを上書き */
+.content-box.container:not([class*="padding-"]) {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+
+/* 2. ヘッダー */
+header {
+    background-color: var(--dark-purple);
+    color: var(--white);
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px var(--shadow-medium);
+}
+
+header .logo-area {
+    padding-left: 20px;
+}
+
+header .logo-area img {
+    height: 50px; /* ロゴの高さ */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    padding-right: 20px;
+}
+
+header nav ul li {
+    margin-left: 30px;
+}
+
+header nav ul li a {
+    color: var(--white);
+    font-weight: 700;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--light-purple);
+    transition: width 0.3s ease;
+}
+
+header nav ul li a:hover::after,
+header nav ul li a.active::after {
+    width: 100%;
+}
+
+header nav ul li a:hover {
+    color: var(--light-purple);
+}
+
+header nav ul li a.active {
+    color: var(--light-purple);
+}
+
+/* 3. ヒーローセクション (トップページ) */
+.hero-section {
+    /* 幾何学模様 1: 斜めストライプ */
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            var(--geometric-pattern-color-1) 0,
+            var(--geometric-pattern-color-1) 2px,
+            transparent 2px,
+            transparent 10px
+        ),
+        /* 幾何学模様 2: ドット */
+        radial-gradient(
+            circle at center,
+            var(--geometric-pattern-color-2) 1px,
+            transparent 1px
+        ),
+        /* メインのグラデーション */
+        linear-gradient(135deg, var(--dark-purple) 0%, var(--main-purple) 100%);
+    background-size:
+        10px 10px, /* 斜めストライプのサイズ */
+        20px 20px, /* ドットのサイズ */
+        cover; /* グラデーションのサイズ */
+    background-position:
+        0 0, /* パターン1の開始位置 */
+        5px 5px, /* パターン2の開始位置 (ずらすことで重なりを調整) */
+        center center; /* グラデーションの開始位置 */
+    color: var(--white);
+    text-align: center;
+    padding: 150px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 600px;
+    position: relative;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5em;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 5px var(--shadow-medium);
+}
+
+.hero-content .tagline {
+    font-size: 1.8em;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    text-shadow: 1px 1px 3px var(--shadow-medium);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* ボタンの共通スタイル */
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    text-align: center;
+    white-space: nowrap; /* テキストの折り返しを防ぐ */
+}
+
+.btn.primary-btn {
+    background-color: var(--main-purple);
+    color: var(--white);
+    border: 2px solid var(--main-purple);
+    box-shadow: 0 5px 15px rgba(102, 51, 153, 0.3);
+}
+
+.btn.primary-btn:hover {
+    background-color: var(--dark-purple);
+    border-color: var(--dark-purple);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(102, 51, 153, 0.4);
+}
+
+.btn.secondary-btn {
+    background-color: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+.btn.secondary-btn:hover {
+    background-color: var(--white);
+    color: var(--dark-purple);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* 4. セクション共通スタイル */
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3em;
+    color: var(--dark-purple);
+    text-align: center;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--main-purple);
+    border-radius: 2px;
+}
+
+.section-description {
+    font-size: 1.1em;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 5. About Us サマリー (トップページ) */
+/* このセクション全体をボックスに含めるので、元の背景やパディングは調整 */
+.about-us-summary {
+    background-color: var(--light-gray-bg); /* ボックスの周囲の背景色 */
+    padding: 80px 0 20px; /* 上下のパディング調整 */
+    text-align: center;
+}
+
+.about-us-summary .about-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.about-us-summary .about-text {
+    flex: 1;
+    text-align: left;
+}
+
+.about-us-summary .about-text p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.about-us-summary .about-image {
+    flex: 1;
+    min-width: 300px; /* 画像の最小幅を設定 */
+}
+
+.about-us-summary .about-image img {
+    border-radius: 15px;
+    box-shadow: 0 10px 20px var(--shadow-light);
+}
+
+.btn.read-more-btn {
+    margin-top: 20px;
+}
+
+/* 6. 最新動画セクション (トップページ) */
+/* このセクション全体をボックスに含めるので、元の背景やパディングは調整 */
+.latest-videos {
+    background-color: var(--light-gray-bg); /* ボックスの周囲の背景色 */
+    padding: 20px 0 20px; /* 上下のパディング調整 */
+    text-align: center;
+}
+
+.latest-videos .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.latest-videos .video-item {
+    background-color: var(--white); /* video-item自体はボックスではないので、白背景に */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px var(--shadow-light);
+    overflow: hidden;
+    padding: 20px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.latest-videos .video-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--shadow-medium);
+}
+
+.latest-videos .video-item iframe {
+    width: 100%;
+    height: 180px; /* iframeの高さ調整 */
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.latest-videos .video-item h3 {
+    font-size: 1.3em;
+    color: var(--heading-color);
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.latest-videos .video-item p {
+    font-size: 0.9em;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.latest-videos .video-item .watch-btn {
+    display: inline-block;
+    background-color: var(--main-purple);
+    color: var(--white);
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 0.9em;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.latest-videos .video-item .watch-btn:hover {
+    background-color: var(--dark-purple);
+}
+
+.latest-videos .all-videos-link {
+    margin-top: 60px;
+}
+
+/* 7. ニュース & イベントセクション (トップページ) */
+/* このセクション全体をボックスに含めるので、元の背景やパディングは調整 */
+.news-events {
+    background-color: var(--light-gray-bg); /* ボックスの周囲の背景色 */
+    padding: 20px 0 80px; /* 上下のパディング調整 */
+    text-align: center;
+}
+
+.news-events .news-list {
+    margin-top: 50px;
+    max-width: 700px; /* ニュースリストの幅は維持 */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.news-events .news-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--light-gray);
+    text-align: left;
+}
+
+.news-events .news-item:last-child {
+    border-bottom: none;
+}
+
+.news-events .news-date {
+    font-size: 0.9em;
+    color: var(--text-color);
+    min-width: 100px; /* 日付の幅を固定 */
+    flex-shrink: 0;
+}
+
+.news-events .news-item a {
+    font-size: 1.1em;
+    color: var(--heading-color);
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+.news-events .news-item a:hover {
+    color: var(--main-purple);
+}
+
+.news-events .all-news-link {
+    margin-top: 60px;
+}
+
+/* 8. フッター */
+footer {
+    background-color: var(--dark-purple);
+    color: var(--white);
+    padding: 30px 0;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* レスポンシブ対応 */
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer p a {
+    transition: color 0.3s ease;
+}
+
+footer p a:hover {
+    color: var(--light-purple);
+}
+
+footer .footer-sns {
+    display: flex;
+    gap: 15px;
+    margin: 5px 0;
+}
+
+footer .footer-sns img {
+    height: 24px;
+    width: 24px;
+    transition: transform 0.3s ease;
+}
+
+footer .footer-sns a:hover img {
+    transform: translateY(-2px);
+}
+
+
+/* 9. サブページヒーロー (About, Members, Privacy, Contact 共通) */
+.hero-sub {
+    /* 幾何学模様 1: 斜めストライプ */
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            var(--geometric-pattern-color-1) 0,
+            var(--geometric-pattern-color-1) 2px,
+            transparent 2px,
+            transparent 10px
+        ),
+        /* 幾何学模様 2: ドット */
+        radial-gradient(
+            circle at center,
+            var(--geometric-pattern-color-2) 1px,
+            transparent 1px
+        ),
+        /* メインのグラデーション */
+        linear-gradient(135deg, var(--dark-purple) 0%, var(--main-purple) 100%);
+    background-size:
+        10px 10px, /* 斜めストライプのサイズ */
+        20px 20px, /* ドットのサイズ */
+        cover; /* グラデーションのサイズ */
+    background-position:
+        0 0, /* パターン1の開始位置 */
+        5px 5px, /* パターン2の開始位置 (ずらすことで重なりを調整) */
+        center center; /* グラデーションの開始位置 */
+    color: var(--white);
+    text-align: center;
+    padding: 100px 20px;
+    margin-bottom: 60px;
+}
+.hero-sub h1 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px var(--shadow-light);
+}
+.hero-sub p {
+    font-size: 1.3em;
+    opacity: 0.9;
+}
+
+/* 10. グループ紹介ページ (about.html) */
+.about-detail-section {
+    background-color: var(--light-gray-bg); /* ボックスの周囲の背景色 */
+    padding: 20px 0 80px; /* 上下のパディング調整 */
+}
+
+.about-block {
+    margin-bottom: 80px;
+}
+
+.about-block:last-child {
+    margin-bottom: 0;
+}
+
+.about-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2em;
+    color: var(--dark-purple);
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.about-heading::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background-color: var(--main-purple);
+    border-radius: 1px;
+}
+
+.about-flex {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-flex.reverse {
+    flex-direction: row-reverse; /* 画像とテキストを逆順に */
+}
+
+.about-text-content {
+    flex: 1;
+    text-align: left;
+}
+
+.about-text-content p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.about-text-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.about-text-content ul li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    font-size: 1.05em;
+    line-height: 1.6;
+}
+
+.about-text-content ul li::before {
+    content: '★'; /* アイコンの代わりに星 */
+    color: var(--main-purple);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 0.9em;
+}
+
+.about-image-content {
+    flex: 1;
+    min-width: 350px;
+}
+
+.about-image-content img {
+    border-radius: 15px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+}
+
+/* 11. メンバー紹介ページ (members.html) */
+.members-grid-section {
+    background-color: var(--light-gray-bg); /* ボックスの周囲の背景色 */
+    padding: 20px 0 80px; /* 上下のパディング調整 */
+    text-align: center;
+}
+
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.member-card {
+    background-color: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px var(--shadow-medium);
+}
+
+.member-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 20px;
+    border: 4px solid var(--main-purple); /* 円形ボーダー */
+    box-shadow: 0 0 0 6px rgba(102, 51, 153, 0.2); /* 外側のリング影 */
+}
+
+.member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    color: var(--dark-purple);
+    margin-bottom: 8px;
+}
+
+.member-role {
+    font-size: 1em;
+    color: var(--main-purple);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.member-bio {
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: var(--text-color);
+    margin-bottom: 25px;
+}
+
+.member-sns {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.member-sns img {
+    height: 28px;
+    width: 28px;
+    transition: transform 0.3s ease;
+}
+
+.member-sns a:hover img {
+    transform: scale(1.1);
+}
+
+/* 12. プライバシーポリシーページ (privacy.html) */
+.privacy-policy-section {
+    background-color: var(--light-gray-bg); /* ボックスの周囲の背景色 */
+    padding: 20px 0 80px; /* 上下のパディング調整 */
+}
+
+.privacy-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    color: var(--dark-purple);
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+.thin-hr {
+    border: 0;
+    border-top: 1px solid var(--light-gray);
+    margin: 30px auto;
+    width: 80%;
+}
+
+.privacy-subtitle {
+    font-size: 1.6em;
+    color: var(--dark-purple);
+    margin-top: 40px;
+    margin-bottom: 15px;
+    border-left: 5px solid var(--main-purple);
+    padding-left: 15px;
+}
+
+.privacy-sub-sub-title {
+    font-size: 1.2em;
+    color: var(--heading-color);
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+.dotted-hr {
+    border: 0;
+    border-top: 1px dashed var(--main-purple);
+    margin: 15px 0;
+}
+
+.privacy-text {
+    font-size: 1em;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+/* 13. お問い合わせページ (contact.html) - 新規追加または上書き */
+.contact-section {
+    background-color: var(--light-gray-bg); /* ボックスの周囲の背景色 */
+    padding: 20px 0 80px; /* 上下のパディング調整 */
+}
+
+/* フォームのスタイル */
+.contact-form .form-group {
+    margin-bottom: 25px;
+}
+
+.contact-form label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--heading-color);
+}
+
+.contact-form label .required {
+    color: var(--main-purple);
+    font-size: 0.9em;
+    margin-left: 5px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: calc(100% - 24px); /* パディングとボーダーを考慮した幅 */
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: 'Noto Sans JP', sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--input-bg);
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+    border-color: var(--main-purple);
+    outline: none;
+    box-shadow: 0 0 8px rgba(102, 51, 153, 0.4);
+}
+
+.contact-form textarea {
+    resize: vertical; /* 縦方向のみリサイズ可能 */
+}
+
+.privacy-agreement {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.privacy-agreement input[type="checkbox"] {
+    margin-right: 10px;
+    min-width: 16px; /* チェックボックスの最小幅 */
+    min-height: 16px; /* チェックボックスの最小高さ */
+    accent-color: var(--main-purple); /* チェックボックスの色をブランドカラーに */
+    cursor: pointer;
+}
+.privacy-agreement label {
+    display: inline; /* チェックボックスの横に表示 */
+    margin-bottom: 0;
+    font-weight: 400; /* 通常の太さ */
+}
+.privacy-agreement label a {
+    color: var(--main-purple);
+    text-decoration: none;
+    border-bottom: 1px solid var(--main-purple);
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+.privacy-agreement label a:hover {
+    color: var(--dark-purple);
+    border-bottom-color: var(--dark-purple);
+}
+
+.contact-form .submit-btn {
+    display: block;
+    width: 200px; /* 固定幅 */
+    padding: 15px 25px;
+    margin: 40px auto 0; /* 中央寄せと上部の余白 */
+    background-color: var(--main-purple);
+    color: var(--white);
+    border: none;
+    border-radius: 50px; /* 丸いボタン */
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(102, 51, 153, 0.3); /* 影 */
+}
+
+.contact-form .submit-btn:hover {
+    background-color: var(--dark-purple);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 51, 153, 0.4);
+}
+
+/* フォーム送信後のメッセージ表示エリア */
+.form-notification {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid; /* 色はJSでクラスによって変更 */
+    display: none; /* 初期状態では非表示 */
+}
+
+.form-notification.success-message {
+    background-color: var(--success-bg);
+    color: var(--success-text);
+    border-color: var(--success-border);
+}
+
+.form-notification.error-message {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    border-color: var(--error-border);
+}
+
+
+.contact-info {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px dashed var(--light-gray);
+    text-align: center;
+}
+.contact-info h3 {
+    font-size: 1.8em;
+    color: var(--dark-purple);
+    margin-bottom: 20px;
+}
+.contact-info p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.contact-info ul li {
+    font-size: 1em;
+    line-height: 2;
+    color: var(--text-color);
+}
+.contact-info ul li strong {
+    color: var(--main-purple);
+}
+.contact-info ul li a {
+    color: var(--main-purple);
+    text-decoration: none;
+    border-bottom: 1px solid var(--main-purple);
+}
+.contact-info ul li a:hover {
+    color: var(--dark-purple);
+    border-bottom-color: var(--dark-purple);
+}
+
+/* --- アニメーション設定 --- */
+/* アニメーションの初期状態: 透明で少し下に移動 */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* アニメーションの時間とイージング */
+}
+
+/* シンプルなフェードイン */
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+/* アニメーションが適用された後の状態 (JavaScriptでクラスが付与される) */
+.fade-in-up.is-animated,
+.fade-in.is-animated {
+    opacity: 1;
+    transform: translateY(0); /* 元の位置に戻る */
+}
+
+/* ヒーローセクションの遅延アニメーション (CSSのみ) */
+/* hero-contentの子要素に適用することで、順番にアニメーション */
+.hero-content h1.fade-in-up {
+    transition-delay: 0s;
+}
+.hero-content .tagline.fade-in-up {
+    transition-delay: 0.2s; /* 0.2秒遅れて開始 */
+}
+.hero-content .hero-buttons.fade-in-up {
+    transition-delay: 0.4s; /* 0.4秒遅れて開始 */
+}
+
+
+/* 14. レスポンシブデザイン */
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 3.5em;
+    }
+    .hero-content .tagline {
+        font-size: 1.5em;
+    }
+    /* content-box のパディングを調整 */
+    .content-box {
+        padding: 30px;
+    }
+    .content-box.container {
+        padding-left: 30px; /* content-boxと併用時の左右パディング */
+        padding-right: 30px;
+    }
+    .about-us-summary .about-content {
+        flex-direction: column;
+    }
+    .about-us-summary .about-image {
+        order: -1; /* 画像を上部に移動 */
+        margin-bottom: 30px;
+    }
+    .about-detail-section .about-flex {
+        flex-direction: column;
+    }
+    .about-detail-section .about-flex.reverse {
+        flex-direction: column;
+    }
+    .about-detail-section .about-image-content {
+        order: -1;
+        margin-bottom: 30px;
+    }
+    .about-detail-section .about-text-content {
+        text-align: center;
+    }
+    .about-detail-section .about-text-content ul {
+        text-align: left;
+        max-width: 500px;
+        margin: 0 auto 20px;
+    }
+
+    /* お問い合わせフォームの入力欄の幅を調整 */
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form textarea {
+        width: calc(100% - 20px); /* 画面幅が小さくなるので少しパディングを減らす */
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+    header .logo-area {
+        padding-left: 0;
+        margin-bottom: 10px;
+    }
+    header nav ul {
+        padding-right: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    header nav ul li {
+        margin: 0 15px 5px;
+    }
+    .hero-section {
+        padding: 100px 15px;
+        min-height: 500px;
+    }
+    .hero-content h1 {
+        font-size: 2.8em;
+    }
+    .hero-content .tagline {
+        font-size: 1.2em;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .btn {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .section-title {
+        font-size: 2.2em;
+    }
+    .section-description {
+        font-size: 1em;
+        margin-bottom: 30px;
+    }
+    /* content-box のパディングをさらに調整 */
+    .content-box {
+        padding: 25px;
+        margin-bottom: 40px; /* マージンも調整 */
+    }
+    .content-box.container {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    .latest-videos .video-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .latest-videos .video-item iframe {
+        height: 200px;
+    }
+    .news-events .news-item {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+    .news-events .news-date {
+        margin-bottom: 5px;
+    }
+    .news-events .news-item a {
+        margin-left: 0;
+    }
+    footer .container {
+        flex-direction: column;
+    }
+    footer p, footer .footer-sns {
+        margin: 10px 0;
+    }
+
+    /* プライバシーポリシーページ */
+    .privacy-title {
+        font-size: 2em;
+    }
+    .privacy-subtitle {
+        font-size: 1.4em;
+    }
+    .privacy-sub-sub-title {
+        font-size: 1.1em;
+    }
+
+    /* お問い合わせページ */
+    .contact-form .submit-btn {
+        width: 100%;
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+    .privacy-agreement {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .privacy-agreement input[type="checkbox"] {
+        margin-bottom: 10px;
+    }
+    .privacy-agreement label {
+        display: block; /* チェックボックスの下にラベルが来るように */
+    }
+}
+
+/* さらに小さい画面 (スマホ横向きなど) */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2.2em;
+    }
+    .hero-content .tagline {
+        font-size: 1em;
+    }
+    .btn {
+        width: 95%;
+        padding: 12px 20px;
+    }
+    .section-title {
+        font-size: 1.8em;
+    }
+    .latest-videos .video-item iframe {
+        height: 160px;
+    }
+    .content-box {
+        padding: 20px;
+    }
+    .content-box.container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    /* お問い合わせフォームの入力欄の幅をさらに調整 */
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form textarea {
+        width: 100%; /* フル幅に */
+        padding: 10px; /* パディングも少し減らす */
+    }
+    /* 必須マークの表示を調整 */
+    .contact-form label .required {
+        display: inline-block; /* 小さな画面でも横並びに */
+        margin-left: 5px;
+    }
+}
