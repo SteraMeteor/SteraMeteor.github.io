@@ -90,7 +90,7 @@ function initializeContactForm() {
 
             // ★★★ ここをあなたのGoogleフォームURLに置き換えてください ★★★
             // URLは文字列なので、引用符で囲む必要があります。
-            const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfSqyvC_PWfJUPIWDGp8nNMB9lRnrYwvI4AxfIMTt_kxo2EwA/viewform'; 
+            const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfSqyvC_PWfJUPIWDGp8nNMB9lRnrYwvI4AxfIMTt_kxo2EwA'; 
             // 注意: '/viewform' は不要です。fetchのURLに '/formResponse' を追加します。
 
             // FormDataオブジェクトを作成し、各データを追加
